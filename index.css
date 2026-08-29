@@ -1,0 +1,132 @@
+html, body{
+    background-color: black;
+    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    height: 100%;
+}
+
+.app-container {
+    display: flex;
+    max-width: 1400px;
+    margin: 0 auto;
+    height: 100vh;
+}
+
+#sidepanel{
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    width:250px;
+    padding:10px 10px 10px 75px;
+    background: black;
+    color: white;
+    gap: 40px;
+    border-right: 3px solid rgb(85, 85, 85);
+    box-sizing: border-box;
+    height: 100vh;
+
+}
+
+.sidepanelbtn{
+    background-color: black;
+    width: 100px;
+    height: 40px;
+    border-radius: 100px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+    transition: border-color 0.8s ease;
+    padding-right: auto;
+}
+
+.sidepanelbtn:hover{
+    background-color: rgb(75, 75, 75);
+}
+
+.favicon{
+    width: 60px;
+    height: 60px;
+    left: 10px;
+}
+
+.searchbar{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: rgb(44, 44, 44);
+    border: 2px solid transparent;
+    border-radius: 100px;
+    padding: 8px 16px;
+    width: 450px; 
+    transition: border-color 0.3s ease;
+}
+
+.searchbar:hover{
+    border: 2px solid rgb(90, 89, 89);
+}
+
+.search-input{
+    background: transparent;
+    border: none;
+    outline: none;
+    color: white;
+    font-size: 14px;
+    width: 100%
+}
+
+.mainContent{
+    flex: 1;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;  
+    padding-top: 30px;
+    padding-right: auto;  
+    overflow: hidden;   
+}
+
+.rightpanel{
+    flex-shrink: 0;
+    margin-left: auto;
+    width: 250px;
+    padding: 2px 35px;
+    color: white;
+    border-left: 3px solid rgb(85, 85, 85);
+    box-sizing: border-box;
+    min-height: 100vh;
+}
+
+.friendsContainer{
+    background-color: rgb(39, 39, 39);
+    border: none;
+    border-radius: 40px;
+    width: auto;
+    height: 10%;
+}
+
+.friendsProfile{
+    
+}
+
+.profilepreview{
+    background-color: rgb(22, 22, 22);
+    border: none;
+    border-radius: 40px;
+    width: auto;
+    height: 5%;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s ease;
+    border: transparent 2px solid;
+}
+
+.profilepreview:hover{
+    border: 2px solid rgb(95, 95, 95);
+}
+
+.profilepic{
+    border-radius: 100%;
+    width: 20%;
+}
