@@ -80,13 +80,13 @@ html, body{
     flex: 1;
     flex-shrink: 0;
     display: flex;
-    justify-content: center;
-    align-items: flex-start;  
+    flex-direction: column;   /* ← stacks children top-to-bottom */
+    justify-content: flex-start;
+    align-items: center;      /* centers the search bar and greeting horizontally */
+    gap: 20px;                 /* space between search bar and greeting */
     padding-top: 30px;
-    padding-right: auto;  
     overflow: hidden;   
 }
-
 .rightpanel{
     flex-shrink: 0;
     margin-left: auto;
@@ -297,4 +297,10 @@ html, body{
     display: flex;
     flex-direction: column;
     gap: 12px;
+}
+
+#greetings{
+    color: white;
+    padding-right: 50%;
+    
 }

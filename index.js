@@ -1,82 +1,125 @@
-function getGreetings(){
-    const hour = new Date(). getHours();
-    if (hour > 12) return "Good Morning";
-    if(hour < 15) return "Good Afternoon";
-    if(hour < 18) return "Good Evening";
-    return "Good Night"
+// ---- Greeting ----
+function getGreeting(){
+    const hour = new Date().getHours();
+    if (hour < 12) return "Good Morning";
+    if (hour < 17) return "Good Afternoon";
+    if (hour < 21) return "Good Evening";
+    return "Good Night";
 }
 
 function renderGreeting(){
-    const name = getUserName
-    const greeting = `${getGreeting()}, ${name} 👋`;
-    document.addEventListener("DOMContentLoaded" , renderGreeting);
+    const greeting = `${getGreeting()}, ${getUserName()} 👋`;
+    const el = document.getElementById("greetings");
+    if (el) el.textContent = greeting;
 }
 
-document.addEventListener("DOMContentLoaded" , renderGreeting);
+// ---- Core user storage ----
+function getCurrentUser(){
+    return JSON.parse(localStorage.getItem('studypal_user') || 'null');
+}
 
+function setCurrentUser(userObj){
+    localStorage.setItem('studypal_user', JSON.stringify(userObj));
+    updateUsernameDisplay();
+}
 
-function getUserName(user){
-    if (user && user.name){
-        return user.name;
-    }
+function getUserName(){
+    const user = getCurrentUser();
+    if (user && user.name) return user.name;
 
     let guestName = localStorage.getItem('guestName');
     if (!guestName) {
-        const randomNum = Math.floor(100000 + Math.random() * 900000);
-        guestName = `User${randomNum}`;
-        localStorage.setItem(`guestName`, guestName)
+        guestName = `User${Math.floor(100000 + Math.random() * 900000)}`;
+        localStorage.setItem('guestName', guestName);
     }
     return guestName;
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+function updateUsernameDisplay(){
     document.querySelector('.username').textContent = getUserName();
-});
+}
 
+// ---- Google Sign-In ----
+function parseJwt(token){
+    const base64 = token.split('.')[1];
+    return JSON.parse(atob(base64));
+}
+
+function handleGoogleResponse(response){
+    const data = parseJwt(response.credential);
+    setCurrentUser({ name: data.name, email: data.email, provider: 'google' });
+    document.getElementById('signupModal').classList.remove('open');
+    document.getElementById('profileDropdown').classList.remove('open');
+}
+
+// ---- Everything wired up on page load ----
 document.addEventListener("DOMContentLoaded", () => {
+    updateUsernameDisplay();
+    renderGreeting();
+
+    if (window.google) {
+        google.accounts.id.initialize({
+            client_id: "YOUR_CLIENT_ID.apps.googleusercontent.com",
+            callback: handleGoogleResponse
+        });
+    }
+
     const profileBtn = document.getElementById("profileBtn");
     const dropdown = document.getElementById("profileDropdown");
+    const signupBtn = document.getElementById("signupBtn");
+    const loginBtn = document.getElementById("loginBtn");
+    const signupModal = document.getElementById("signupModal");
+    const closeModal = document.getElementById("closeModal");
 
     profileBtn.addEventListener("click", (e) => {
-        e.stopPropagation(); // stop this click from immediately closing the dropdown below
+        e.stopPropagation();
         dropdown.classList.toggle("open");
     });
 
-    // close the dropdown if you click anywhere else on the page
     document.addEventListener("click", (e) => {
         if (!dropdown.contains(e.target) && !profileBtn.contains(e.target)) {
             dropdown.classList.remove("open");
         }
     });
 
-    document.getElementById("loginBtn").addEventListener("click", () => {
-        console.log("Log In clicked");
-        // e.g. window.location.href = "login.html";
-    });
-
-    document.getElementById("signupBtn").addEventListener("click", () => {
-        console.log("Sign Up clicked");
-        // e.g. window.location.href = "signup.html";
-    });
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-    const signupBtn = document.getElementById("signupBtn");
-    const signupModal = document.getElementById("signupModal");
-    const closeModal = document.getElementById("closeModal");
-
     signupBtn.addEventListener("click", () => {
         signupModal.classList.add("open");
+        dropdown.classList.remove("open");
+    });
+
+    loginBtn.addEventListener("click", () => {
+        console.log("Log In clicked");
     });
 
     closeModal.addEventListener("click", () => {
         signupModal.classList.remove("open");
     });
 
-    // close if clicking the dark overlay outside the box
     signupModal.addEventListener("click", (e) => {
         if (e.target === signupModal) {
             signupModal.classList.remove("open");
         }
+    });
+
+    document.querySelector('.google-btn').addEventListener('click', () => {
+        if (window.google) {
+            google.accounts.id.prompt();
+        } else {
+            alert("Google Sign-In failed to load.");
+        }
+    });
+
+    document.getElementById('continueBtn').addEventListener('click', () => {
+        const usernameVal = document.getElementById('username-placeholder').value.trim();
+        const passwordVal = document.getElementById('password-placeholder').value.trim();
+
+        if (!usernameVal || !passwordVal) {
+            alert('Please fill in both fields.');
+            return;
+        }
+
+        setCurrentUser({ name: usernameVal, provider: 'local' });
+        signupModal.classList.remove('open');
+        dropdown.classList.remove('open');
     });
 });
