@@ -111,6 +111,8 @@ html, body{
 }
 
 .profilepreview{
+    display: flex;
+    padding: 6px 20px 6px 6px;
     background-color: rgb(22, 22, 22);
     border: none;
     border-radius: 40px;
@@ -128,5 +130,14 @@ html, body{
 
 .profilepic{
     border-radius: 100%;
-    width: 20%;
+    min-width: 40px;
+    object-fit: cover;
+}
+
+.username{
+    margin: 0;
+    white-space: nowrap;
+    padding-top: 7%;
+    padding-left: 5%;
+
 }

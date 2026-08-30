@@ -6,10 +6,6 @@ function getGreetings(){
     return "Good Night"
 }
 
-function getUserName(){
-    return localStorage.getItem("username") || "there";
-}
-
 function renderGreeting(){
     const name = getUserName
     const greeting = `${getGreeting()}, ${name} 👋`;
@@ -17,3 +13,22 @@ function renderGreeting(){
 }
 
 document.addEventListener("DOMContentLoaded" , renderGreeting);
+
+
+function getUserName(user){
+    if (user && user.name){
+        return user.name;
+    }
+
+    let guestName = localStorage.getItem('guestName');
+    if (!guestName) {
+        const randomNum = Math.floor(100000 + Math.random() * 900000);
+        guestName = `User${randomNum}`;
+        localStorage.setItem(`guestName`, guestName)
+    }
+    return guestName;
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelector('.username').textContent = getUserName();
+});
