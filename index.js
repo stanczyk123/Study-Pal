@@ -32,3 +32,30 @@ function getUserName(user){
 document.addEventListener("DOMContentLoaded", () => {
     document.querySelector('.username').textContent = getUserName();
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+    const profileBtn = document.getElementById("profileBtn");
+    const dropdown = document.getElementById("profileDropdown");
+
+    profileBtn.addEventListener("click", (e) => {
+        e.stopPropagation(); // stop this click from immediately closing the dropdown below
+        dropdown.classList.toggle("open");
+    });
+
+    // close the dropdown if you click anywhere else on the page
+    document.addEventListener("click", (e) => {
+        if (!dropdown.contains(e.target) && !profileBtn.contains(e.target)) {
+            dropdown.classList.remove("open");
+        }
+    });
+
+    document.getElementById("loginBtn").addEventListener("click", () => {
+        console.log("Log In clicked");
+        // e.g. window.location.href = "login.html";
+    });
+
+    document.getElementById("signupBtn").addEventListener("click", () => {
+        console.log("Sign Up clicked");
+        // e.g. window.location.href = "signup.html";
+    });
+});

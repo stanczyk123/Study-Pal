@@ -117,7 +117,7 @@ html, body{
     border: none;
     border-radius: 40px;
     width: auto;
-    height: 5%;
+    height: 75%;
     color: white;
     cursor: pointer;
     transition: 0.3s ease;
@@ -129,8 +129,9 @@ html, body{
 }
 
 .profilepic{
+    width: 40px;
+    height: 40px;
     border-radius: 100%;
-    min-width: 40px;
     object-fit: cover;
 }
 
@@ -140,4 +141,44 @@ html, body{
     padding-top: 7%;
     padding-left: 5%;
 
+}
+
+.profilepreview-wrapper{
+    position: relative; /* anchors the dropdown to this box */
+}
+
+.profile-dropdown{
+    display: none; /* hidden by default */
+    position: absolute;
+    bottom: 110%; /* opens upward, since your sidepanel is at the bottom-left typically */
+    left: 0;
+    background-color: rgb(30, 30, 30);
+    border: 1px solid rgb(70, 70, 70);
+    border-radius: 12px;
+    min-width: 160px;
+    padding: 6px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    z-index: 10;
+}
+
+.profile-dropdown.open{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.dropdown-item{
+    background: transparent;
+    border: none;
+    color: white;
+    text-align: left;
+    padding: 10px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s ease;
+}
+
+.dropdown-item:hover{
+    background-color: rgb(55, 55, 55);
 }
