@@ -59,3 +59,24 @@ document.addEventListener("DOMContentLoaded", () => {
         // e.g. window.location.href = "signup.html";
     });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+    const signupBtn = document.getElementById("signupBtn");
+    const signupModal = document.getElementById("signupModal");
+    const closeModal = document.getElementById("closeModal");
+
+    signupBtn.addEventListener("click", () => {
+        signupModal.classList.add("open");
+    });
+
+    closeModal.addEventListener("click", () => {
+        signupModal.classList.remove("open");
+    });
+
+    // close if clicking the dark overlay outside the box
+    signupModal.addEventListener("click", (e) => {
+        if (e.target === signupModal) {
+            signupModal.classList.remove("open");
+        }
+    });
+});

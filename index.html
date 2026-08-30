@@ -35,7 +35,7 @@
                 Profile
             </div>
 
-            
+
             <div class="profilepreview-wrapper" id="profileBtn">
                 <div class="profilepreview">
                     <img class="profilepic" src="favicon/profilepc.png">
@@ -45,6 +45,27 @@
                 <div class="profile-dropdown" id="profileDropdown">
                     <button class="dropdown-item" id="loginBtn">Log In</button>
                     <button class="dropdown-item" id="signupBtn">Sign Up</button>
+                </div>
+
+                <div class="modal-overlay" id="signupModal">
+                    <div class="modal-box">
+                        <button class="modal-close" id="closeModal">&times;</button>
+                        <h2 class="modal-logo">Study Pal</h2>
+                        <h1 class="modal-title">Please select an option below</h1>
+
+                        <button class="auth-btn google-btn">
+                            <img src="favicon/auth-img.jpg" class="auth-icon">
+                            Continue with Google
+                        </button>
+
+                        <div class="modal-divider"><span>OR</span></div>
+
+                        <div class="placeholder-wrapper">
+                            <input type="text" placeholder="Email or Username" class="signup-placeholder">
+                            <input type="text" placeholder="Password" class="signup-placeholder" id="password-placeholder">
+                        </div>
+                        <button class="modal-continue-btn" id="continueBtn">Continue</button> 
+                    </div>
                 </div>
             </div>
         </div>
