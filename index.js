@@ -1,4 +1,4 @@
-// ---- Greeting ----
+
 function getGreeting(){
     const hour = new Date().getHours();
     if (hour < 12) return "Good Morning";
@@ -13,7 +13,6 @@ function renderGreeting(){
     if (el) el.textContent = greeting;
 }
 
-// ---- Core user storage ----
 function getCurrentUser(){
     return JSON.parse(localStorage.getItem('studypal_user') || 'null');
 }
@@ -39,7 +38,7 @@ function updateUsernameDisplay(){
     document.querySelector('.username').textContent = getUserName();
 }
 
-// ---- Google Sign-In ----
+
 function parseJwt(token){
     const base64 = token.split('.')[1];
     return JSON.parse(atob(base64));
@@ -52,7 +51,7 @@ function handleGoogleResponse(response){
     document.getElementById('profileDropdown').classList.remove('open');
 }
 
-// ---- Everything wired up on page load ----
+
 document.addEventListener("DOMContentLoaded", () => {
     updateUsernameDisplay();
     renderGreeting();
