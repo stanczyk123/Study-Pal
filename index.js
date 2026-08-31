@@ -138,3 +138,24 @@ function typeText(element, text, speed = 50) {
     }
     typeChar();
 }
+
+//Buat ngilangin homeview diganti sama profile
+
+const homeView = document.getElementById('homeView');
+
+const profileView = document.getElementById('profileView');
+
+function showView(viewToShow) {
+    document.querySelectorAll('.content-view').forEach(view => {
+        view.style.display = 'none';
+    });
+    viewToShow.style.display = 'block';
+}
+
+document.getElementById('sidepanel_profile').addEventListener('click', () => {
+    showView(profileView);
+});
+
+document.getElementById('sidepanel_home').addEventListener('click', () => {
+    showView(homeView);
+});
