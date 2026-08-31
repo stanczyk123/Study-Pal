@@ -358,3 +358,22 @@ html, body{
 .strangerusername{
 
 }
+
+.content-view{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 20px;
+    padding-left: 100px;
+}
+
+#greetings::after {
+    content: '|';
+    animation: blink 0.8s step-end infinite;
+}
+
+#greetings.typing-done::after {
+    content: '';
+    animation: none;
+}

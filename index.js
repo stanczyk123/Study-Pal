@@ -10,7 +10,7 @@ function getGreeting(){
 function renderGreeting(){
     const greeting = `${getGreeting()}, ${getUserName()} 👋`;
     const el = document.getElementById("greetings");
-    if (el) el.textContent = greeting;
+    if (el) typeText(el, greeting, 50);
 }
 
 function getCurrentUser(){
@@ -122,3 +122,19 @@ document.addEventListener("DOMContentLoaded", () => {
         dropdown.classList.remove('open');
     });
 });
+
+function typeText(element, text, speed = 50) {
+    element.textContent = '';
+    element.classList.remove('typing-done');
+    let i = 0;
+    function typeChar() {
+        if (i < text.length) {
+            element.textContent += text.charAt(i);
+            i++;
+            setTimeout(typeChar, speed);
+        } else {
+            element.classList.add('typing-done');
+        }
+    }
+    typeChar();
+}
