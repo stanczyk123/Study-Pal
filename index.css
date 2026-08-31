@@ -377,3 +377,19 @@ html, body{
     content: '';
     animation: none;
 }
+
+#profilepicView{
+    width: 20%;
+    border-radius: 100%;
+    cursor: pointer;
+    transition: 0.5s ease;
+}
+
+#profilepicView:hover{
+    width: 21%;
+}
+
+.profileView-container{
+    display: flex;
+    justify-content: flex-start;
+}
