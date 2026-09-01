@@ -139,7 +139,7 @@ function typeText(element, text, speed = 50) {
     typeChar();
 }
 
-//Buat ngilangin homeview diganti sama profile
+
 
 const homeView = document.getElementById('homeView');
 
@@ -160,6 +160,11 @@ document.getElementById('sidepanel_home').addEventListener('click', () => {
     showView(homeView);
 });
 
-document.querySelector('.profile-button').addEventListener('click', function (){
-    this.classList.toggle('active');
+const buttons = document.querySelectorAll('.profile-button');
+
+buttons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    buttons.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  });
 });
