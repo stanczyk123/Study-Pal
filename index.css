@@ -393,3 +393,30 @@ html, body{
     display: flex;
     justify-content: flex-start;
 }
+
+.horizontal-container{
+    color: white;
+    display: flex;
+    justify-content: flex-start;
+    padding: 10%;
+    gap: 4%;
+    
+}
+
+.profile-button{
+    cursor: pointer;
+    width: 17%;
+    justify-content: center;
+    display: flex;
+    border-radius: 30px; 
+    border: 2px solid transparent;
+    transition: 0.1s ease;
+}
+
+.profile-button.active{
+   border: 2px solid white; 
+}
+
+.profile-button:hover{
+   background-color: rgb(39, 38, 38); 
+}

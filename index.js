@@ -159,3 +159,7 @@ document.getElementById('sidepanel_profile').addEventListener('click', () => {
 document.getElementById('sidepanel_home').addEventListener('click', () => {
     showView(homeView);
 });
+
+document.querySelector('.profile-button').addEventListener('click', function (){
+    this.classList.toggle('active');
+});
