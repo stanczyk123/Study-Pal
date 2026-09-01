@@ -415,6 +415,7 @@ html, body{
 
 .profile-button.active{
    border: 2px solid white; 
+   background-color: rgb(31, 31, 31);
 }
 
 .profile-button:hover{
